@@ -20,6 +20,12 @@ function installDeps()
   conan install . --output-folder="${BUILD_DIR}" --build=missing
 }
 
+function conanInfo()
+{
+  echo "Info: Print file: ./conanfile.txt"
+  cat ./conanfile.txt
+}
+
 function setupCompilation()
 {
   cmake -S${SOURCE_DIR} -B${BUILD_DIR} -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
@@ -31,13 +37,19 @@ function runCompilation()
 }
 
 function showHelp() {
-  echo "-h, --help        show help menu."
-  echo "-c, --clean       run clean build."
-  echo "-V, --verbose     run script in verbose mode."
+  echo "-h,  --help        show help menu."
+  echo "-c,  --clean       run clean build."
+  echo "-ci, --conan-info print conan configuration file."
+  echo "-V,  --verbose     run script in verbose mode."
 }
 
 BASEDIR=$(dirname "$0")
 pushd "$BASEDIR"
+
+if [ ! -f ./conanfile.txt ]; then
+  echo "Error: The conanfile.txt file doesn't exist"
+  exit 1
+fi
 
 while [ $# -gt 0 ];
 do
@@ -47,8 +59,14 @@ do
       exit 0
       ;;
   -c|--clean) 
-      CLEAN_BUILD=1
       shift
+      CLEAN_BUILD=1
+      ;;
+
+  -ci|--conan-info)
+      shift
+      conanInfo
+      exit 0
       ;;
   --)
       shift
