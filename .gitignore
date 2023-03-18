@@ -11,6 +11,9 @@
 *.gch
 *.pch
 
+# Compiled Static libraries
+*.a
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
@@ -30,3 +33,46 @@
 *.exe
 *.out
 *.app
+
+# Logs
+*.log
+
+# Directories
+.settings/
+.idea/
+.vscode/
+.clangd/
+build/
+CMakeFiles/
+
+# Others
+*.json
+*.com
+*.class
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.cbp
+*.sql
+*.sqlite
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db 
+*.vtk
+*.eps
+*.gpl
+*.1
+*.cmake
+Makefile
+CMakeCache.txt
+.cproject
+*.pc
